@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"> 
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>You can afford to give One Percent</h1>
+                <p class=lead>And you can make a huge impact when you give that one percent effectively.</p>
+                <p>Why should you give?  Start with this 3 minute video from the folks at <a href="http://www.thelifeyoucansave.org/">The Life You Can Save</a>.</p>
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/onsIdBanynY" frameborder="0" allowfullscreen></iframe>
+                <hr>
+                <p>How do you give effectively?  Both The Life You Can Save and GiveWell have excellent recommendations about effective charities.</p>
+                <ul>
+                    <li class="lead"><a href="http://www.thelifeyoucansave.org/Impact-Calculator">The Life You Can Save</a></li>
+                    <li class="lead"><a href="http://www.givewell.org/charities/top-charities">GiveWell</a></li>
+                </ul>
+                <h2><a href="https://docs.google.com/a/quixey.com/forms/d/1AwWONgxYHW-owBm0zTMIQ6gcolWLwVcsoyoEfhL13Dc/viewform">Pledge</a> to give One Percent of your income to an effective charity today!</h2>
+            </div>
+        </div>
+<script>
+    $(function () {
+// Find all YouTube videos
+var $allVideos = $("iframe"),
+    // The element that is fluid width
+    $fluidEl = $(".jumbotron");
+// Figure out and save aspect ratio for each video
+$allVideos.each(function() {
+  $(this)
+    .data('aspectRatio', this.height / this.width)
+    // and remove the hard coded width/height
+    .removeAttr('height')
+    .removeAttr('width');
+});
+// When the window is resized
+$(window).resize(function() {
+  var newWidth = $fluidEl.width();
+  // Resize all videos according to their own aspect ratio
+  $allVideos.each(function() {
+    var $el = $(this);
+    $el
+      .width(newWidth)
+      .height(newWidth * $el.data('aspectRatio'));
+  });
+// Kick off one resize to fix all videos on page load
+}).resize();
+});
+</script>
+    </body>
+</html>
+
